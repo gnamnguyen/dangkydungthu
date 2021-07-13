@@ -32,7 +32,7 @@
               <th scope="col">STT</th>
               <th scope="col">Mã KH</th>
               <th scope="col">Khách hàng</th>
-              <th scope="col">Thời gian còn lại</th>
+              <th scope="col">Trang thai</th>
               <th scope="col">Chức năng</th>
             </tr>
           </thead>
@@ -44,21 +44,27 @@
               echo "<td class='idlead'><p>" . $arrLead[$row][1] . "</p></td>";
               echo "<td class='lead'><a href='#' target='_blank'>" . $arrLead[$row][2] . "</a></td>";
               echo "<td>";
-                echo '<div class="row row2">';
-                  echo '<div class="demnguoc">';
-                    echo '<p id="end_datetime" style="display: none;">'.$arrLead[$row][3].'</p>';
-                    echo '<p id="days"></p><small>:</small>';
-                    echo '<p id="hours"></p><small>:</small>';
-                    echo '<p id="minutes"></p><small>:</small>';
-                    echo '<p id="seconds"></p>';
-                  echo '</div>';
-                echo '</div>';
-                echo '<div class=" row row3 timename">';
-                  echo '<span id="ngay">Ngày</span>';
-                  echo '<span id="gio">Giờ</span>';
-                  echo '<span id="phut">Phút</span>';
-                  echo '<span id="giay">Giây</span>';
-                echo '</div>';               
+                if($arrLead[$row][4] == 1){
+                  echo 'Het han';
+                }
+                else{
+                  echo 'Dang su dung';
+                }
+                // echo '<div class="row row2">';
+                //   echo '<div class="demnguoc">';
+                //     echo '<p id="end_datetime" style="display: none;">'.$arrLead[$row][3].'</p>';
+                //     echo '<p id="days"></p><small>:</small>';
+                //     echo '<p id="hours"></p><small>:</small>';
+                //     echo '<p id="minutes"></p><small>:</small>';
+                //     echo '<p id="seconds"></p>';
+                //   echo '</div>';
+                // echo '</div>';
+                // echo '<div class=" row row3 timename">';
+                //   echo '<span id="ngay">Ngày</span>';
+                //   echo '<span id="gio">Giờ</span>';
+                //   echo '<span id="phut">Phút</span>';
+                //   echo '<span id="giay">Giây</span>';
+                // echo '</div>';               
               echo "</td>";
               echo "<td>";
                 echo '<div class="btn-toolbar d-flex justify-content-center" role="toolbar"><div class="btn-group mr-2" role="group" aria-label="First group">';

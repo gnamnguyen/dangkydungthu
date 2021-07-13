@@ -19,16 +19,16 @@ spec:
         image: public.ecr.aws/u7n6c5a4/app
         ports:
         - containerPort: 80
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: nginx-service-loadbalancer
-spec:
-  type: LoadBalancer
-  selector:
-    app: nginxx
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 80
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: nginx-service-loadbalancer
+# spec:
+#   type: LoadBalancer
+#   selector:
+#     app: nginxx
+#   ports:
+#     - protocol: TCP
+#       port: 80
+#       targetPort: 80

@@ -166,7 +166,7 @@
                 </div>
               </div>
               <div class="row row3">
-                <button type="button" class="btn btn-success giahan">Gia hạn</button>
+                <button type="button" class="btn btn-success giahan" data-id='<?php echo $idNewLead; ?>'>Gia hạn</button>
               </div>
             </div>
           </div>

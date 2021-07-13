@@ -12,11 +12,11 @@ if ($conn->connect_error) {
 //create list customer from database
 $arrLead = array();
 $rowLead = 0; //tăng nhờ fetch->row
-$sql = "SELECT id,id_lead,name,end_date FROM leads";
+$sql = "SELECT id,id_lead,name,end_date,cdelete FROM leads";
 $result = $conn->query($sql);
 while ($row = $result->fetch_row()) {
-    for ($j = 0; $j < 4; $j++) {
-        // 0: id(STT), 1: id_lead, 2: name
+    for ($j = 0; $j < 5; $j++) {
+        // 0: id(STT), 1: id_lead, 2: name, 3: end_date, 4: cdelete
         $arrEachLead[$j] = $row[$j];
     }
     $arrLead[$rowLead] = $arrEachLead;

@@ -5,6 +5,7 @@
     $passwordlead = '1234';
     $phone = $_POST['phone'];
     $domain = $_POST['domain'];
+    $delete = 0;
     $dt = new DateTime('now');
     $id_lead = 'lea';
 
@@ -48,7 +49,7 @@
     //create id lead
     $id_lead .= $stt;
     //end create
-    $sql = "INSERT INTO leads (id_lead, name, email, password, company, phone, start_date, end_date, domain ) VALUES ('$id_lead','$name_lead', '$email', '$passwordlead', '$company', '$phone', '$currentDateTime', '$expiredDateTime', '$domain')";
+    $sql = "INSERT INTO leads (id_lead, name, email, password, company, phone, start_date, end_date, domain, cdelete) VALUES ('$id_lead','$name_lead', '$email', '$passwordlead', '$company', '$phone', '$currentDateTime', '$expiredDateTime', '$domain', '$delete')";
     if ($conn->query($sql) === true) {//tạo được data cho leads mới thì trả về id, không tạo được thì gửi error
         echo $id_lead;
         // echo getcwd();
@@ -59,9 +60,13 @@
     $conn->close();
     //Tao Folder 
     mkdir('/opt/lampp/htdocs/dangkydungthu/api-php/deployments/'.$id_lead,0777,true);
-    //Tao dotbroseapp
+    //Tao pod dotbroseapp
     $yamldotbroseapp = file_get_contents('deployments/exam/dotbrose2.yml');
     $yamldotbroseapp = preg_replace('/nginx-deployment/','nginx-deployment-'.$id_lead,$yamldotbroseapp);
-    $yamldotbroseapp = preg_replace('/nginx-service-loadbalancer/','nginx-service-loadbalancer-'.$id_lead,$yamldotbroseapp);
     $yamldotbroseapp = preg_replace('/nginxx/','nginxx-'.$id_lead,$yamldotbroseapp);
     file_put_contents('/opt/lampp/htdocs/dangkydungthu/api-php/deployments/'.$id_lead.'/'.$id_lead.'-dotbrose.yml',$yamldotbroseapp);
+    //Tao service dotbrose
+    $yamldotbroseservice = file_get_contents('deployments/exam/servicedotbrose.yml');
+    $yamldotbroseservice = preg_replace('/nginx-service-loadbalancer/','nginx-service-loadbalancer-'.$id_lead,$yamldotbroseservice);
+    $yamldotbroseservice = preg_replace('/nginxx/','nginxx-'.$id_lead,$yamldotbroseservice);
+    file_put_contents('/opt/lampp/htdocs/dangkydungthu/api-php/deployments/'.$id_lead.'/'.$id_lead.'-service-dotbrose.yml',$yamldotbroseservice);

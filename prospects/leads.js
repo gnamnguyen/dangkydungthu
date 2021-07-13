@@ -49,6 +49,46 @@ $(document).ready(function () {
             }
         })
     });
+    $('.giahan').click(function (e) {
+        e.preventDefault();
+        var Id_lead_giahan = $(".giahan").attr("data-id");
+        $.ajax({
+            type: "POST",
+            url: "../api-php/extenddeployment.php",
+            data: {
+                'id_lead': Id_lead_giahan,
+            },
+            caches: false,
+            success: function (kq) {
+                if(kq == 'success'){
+                    alert('Dang xu ly! Nhan OK de cho!');
+                    window.location.href = "../pageadmin/admis.php";
+                    $.ajax({
+                        type: "POST",
+                        url: "../api-php/getip.php",
+                        data: {
+                            'id_lead_same': Id_lead_giahan,
+                        },
+                        caches: false,
+                        success: function (kq2) {//thanh cong thi chuyen qua man hinh admis
+                            if(kq2 == 'error'){
+                                alert("Gia han khong thanh cong!")
+                            }
+                            else{
+                                // alert(kq2);      
+                                // window.location.href = "./pageadmin/admis.php"; 
+                                alert("Gia han thanh cong!")
+                            }  
+                            // alert(kq2);                       
+                        }
+                    })
+                }
+                else{
+                    alert("Gia han khong thanh cong!");
+                }                           
+            }
+        })
+    });
     $('.btnrollback').click(function (e) {
         e.preventDefault();
         window.location.href = "../pageadmin/admis.php";
